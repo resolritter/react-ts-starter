@@ -16,6 +16,7 @@
     "@types/react-dom": "^16.9.4",
     "babel-jest": "^24.9.0",
     "copy-webpack-plugin": "^5.1.1",
+    "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-prettier": "^3.1.2",
@@ -38,7 +39,7 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "npm run-script clean && NODE_ENV=production webpack -p --config webpack/prod.webpack.config.js",
+    "build": "npm run-script clean && DOTENV_CONFIG_PATH=./env/webpack.prod.build.env node -r dotenv/config node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
     "dev": "NODE_ENV=development webpack-dev-server --config webpack/dev.webpack.config.js",
     "clean": "rm -rf public/"
   },
