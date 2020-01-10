@@ -1,11 +1,21 @@
+const path = require("path")
+
+const webpack = require("webpack")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin")
+const ForkTsCheckerNotifierWebpackPlugin = require("fork-ts-checker-notifier-webpack-plugin")
 
 const baseConfiguration = require("./base.webpack.config")
 const { mergeConfigurations } = require("./utils")
 
+//filename: path.join(baseConfiguration.context, "[name].js"),
 module.exports = mergeConfigurations(baseConfiguration, {
   devtool: "inline-source-map",
+  output: {
+    path: path.join(baseConfiguration.context, "build"),
+    filename: "[name].js",
+    publicPath: "/",
+  },
   devServer: {
     host: "localhost",
     port: "3000",
@@ -14,16 +24,15 @@ module.exports = mergeConfigurations(baseConfiguration, {
     stats: "errors-only",
     historyApiFallback: true,
     hot: true,
-    contentBase: path.join(baseConfig.context, "assets"),
+    contentBase: path.join(baseConfiguration.context, "assets"),
   },
   plugins: [
-    new ForkTsCheckerWebpackPlugin({ eslint: true }),
+    new ForkTsCheckerWebpackPlugin(),
     new ForkTsCheckerNotifierWebpackPlugin({
       title: "TypeScript",
-      excludeWarnings: false,
     }),
     new HtmlWebpackPlugin({
-      filename: "index.html",
+      inject: true,
       template: "index.html",
     }),
     new webpack.HotModuleReplacementPlugin(),

@@ -6,9 +6,11 @@
     "noImplicitAny": false,
     "removeComments": true,
     "sourceMap": true,
-    "allowJs": true,
+    "allowJs": false,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
-    "keyofStringsOnly": true
-  }
+    "keyofStringsOnly": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

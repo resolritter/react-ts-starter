@@ -1,11 +1,11 @@
 const _ = require("lodash")
 const crypto = require("crypto")
 
-const chunkSalt = process.env['CHUNKS_HASH_SALT']
+const chunkSalt = process.env["CHUNKS_HASH_SALT"]
 
-if (!chunkSalt) {
-  console.error(`Salt ${chunkSalt} for production build chunks is not set`)
-  exit(0)
+if (process.env["NODE_ENV"] === "production" && !chunkSalt) {
+  console.error(`Salt ${chunkSalt} for production build chunks is not set. Exiting!`)
+  process.exit(1)
 }
 
 module.exports = {
@@ -20,7 +20,7 @@ module.exports = {
     })
   },
   hashChunk(chunkName) {
-    const hashBuffer = crypto.pbkdf2Sync(chunkName, chunkSalt, 4, 16, 'md5')
-    return hashBuffer.toString('hex')
-  }
+    const hashBuffer = crypto.pbkdf2Sync(chunkName, chunkSalt, 4, 16, "md5")
+    return hashBuffer.toString("hex")
+  },
 }
