@@ -40,17 +40,18 @@ module.exports = {
         message: "setInterval must always be invoked with two arguments.",
       },
     ],
-
-    // handled by ts-eslint, so no need for eslint's rules
     "no-undef": "off",
     "no-unused-vars": "off",
-
-    // used for doing template substitution through "string-template-js"
     "no-template-curly-in-string": "off",
-
-    // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-function-return-type.md#configuring-in-a-mixed-jsts-codebase
     "@typescript-eslint/explicit-function-return-type": "off",
-
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/restrict-template-expressions": [
+      "error",
+      { allowNumber: true },
+    ],
+    "@typescript-eslint/restrict-plus-operands": "error",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/interface-name-prefix": "off",
@@ -63,15 +64,6 @@ module.exports = {
       },
     ],
   },
-  overrides: [
-    {
-      // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/explicit-function-return-type.md#configuring-in-a-mixed-jsts-codebase
-      files: ["*.ts", "*.tsx"],
-      rules: {
-        "@typescript-eslint/explicit-function-return-type": ["error"],
-      },
-    },
-  ],
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint", "sonarjs", "react", "react-hooks"],
 }
