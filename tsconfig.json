@@ -1,16 +1,22 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "baseUrl": ".",
+    "target": "es5",
+    "allowJs": true,
     "module": "esnext",
-    "noResolve": false,
-    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "noImplicitAny": true,
     "removeComments": true,
-    "sourceMap": true,
-    "allowJs": false,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "keyofStringsOnly": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "plugins": [
+      {
+        "name": "typescript-eslint-language-service"
+      }
+    ]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src"]
 }

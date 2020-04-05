@@ -1,14 +1,12 @@
 import * as React from "react"
-
-import reactLogo from "../assets/react.png"
+import { ApplicationState } from "./store/reducer"
+import { useSelector } from "react-redux"
 
 function App(): JSX.Element {
-  return (
-    <>
-    <img src={reactLogo} alt="react logo" />
-    <h1>Hello World!</h1>
-    </>
-  )
+  const hello = useSelector(function (s: ApplicationState) {
+    return s.hello
+  })
+  return <div>{hello}</div>
 }
 
 export default App

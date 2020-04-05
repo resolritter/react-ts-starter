@@ -3,7 +3,6 @@ const path = require("path")
 const webpack = require("webpack")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin")
-const ForkTsCheckerNotifierWebpackPlugin = require("fork-ts-checker-notifier-webpack-plugin")
 
 const baseConfiguration = require("./base.webpack.config")
 const { mergeConfigurations } = require("./utils")
@@ -28,9 +27,6 @@ module.exports = mergeConfigurations(baseConfiguration, {
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
-    new ForkTsCheckerNotifierWebpackPlugin({
-      title: "TypeScript",
-    }),
     new HtmlWebpackPlugin({
       inject: true,
       template: "index.html",
