@@ -1,8 +1,4 @@
 module.exports = {
-  env: {
-    browser: true,
-    node: true,
-  },
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -12,6 +8,16 @@ module.exports = {
     "prettier/@typescript-eslint",
     "prettier/react",
   ],
+  env: {
+    browser: true,
+    node: true,
+  },
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint", "sonarjs", "react", "react-hooks"],
+  parserOptions: {
+    project: "./tsconfig.json",
+    tsconfigRootDir: __dirname,
+  },
   settings: {
     react: {
       version: "detect",
@@ -64,6 +70,4 @@ module.exports = {
       },
     ],
   },
-  parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "sonarjs", "react", "react-hooks"],
 }

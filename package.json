@@ -3,10 +3,16 @@
   "version": "0.0.0",
   "description": "",
   "dependencies": {
+    "connected-react-router": "^6.8.0",
     "core-js": "^3.6.4",
+    "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-router": "^5.1.2",
+    "redux": "^4.0.5",
+    "seamless-immutable": "^7.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -14,6 +20,8 @@
     "@types/lodash": "^4.14.149",
     "@types/react": "^16.9.32",
     "@types/react-dom": "^16.9.6",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
     "babel-jest": "^25.2.6",
     "copy-webpack-plugin": "^5.1.1",
     "dotenv": "^8.2.0",
@@ -42,6 +50,7 @@
     "test": "jest",
     "build": "npm run-script clean && DOTENV_CONFIG_PATH=./env/webpack.prod.build.env node -r dotenv/config node_modules/.bin/webpack-cli -p --config webpack/prod.webpack.config.js",
     "dev": "NODE_ENV=development webpack-dev-server --config webpack/dev.webpack.config.js",
+    "lint": "eslint --ext=tsx --ext=ts ./src/",
     "clean": "rm -rf public/"
   },
   "author": "",
