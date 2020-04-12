@@ -2,7 +2,6 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:sonarjs/recommended",
     "plugin:react/recommended",
     "prettier",
     "prettier/@typescript-eslint",
@@ -13,7 +12,7 @@ module.exports = {
     node: true,
   },
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint", "sonarjs", "react", "react-hooks"],
+  plugins: ["@typescript-eslint", "react", "react-hooks"],
   parserOptions: {
     project: "./tsconfig.json",
     tsconfigRootDir: __dirname,
