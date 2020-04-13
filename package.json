@@ -58,6 +58,6 @@
     "lint": "eslint --ext=tsx --ext=ts ./src/",
     "clean": "rm -rf public/"
   },
-  "author": "",
+  "author": "@resolritter",
   "license": "ISC"
 }
