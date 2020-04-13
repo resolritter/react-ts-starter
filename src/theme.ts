@@ -16,7 +16,7 @@ export function useThemeVariable(varName: keyof Theme) {
     themes[getActiveTheme() as AvailableThemes].theme[varName],
   )
   useEffect(function () {
-    themeChangedCallbacks.set(id, function () {
+    themeChangedCallbacks.set(id, function subscription() {
       setValue(themes[getActiveTheme() as AvailableThemes].theme[varName])
     })
 
