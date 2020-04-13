@@ -4,7 +4,7 @@ export type AvailableThemes = "light" | "dark"
 
 export type Theme = {
   bgColor: CSSProperties["backgroundColor"]
-  fgColor: CSSProperties["backgroundColor"]
+  fgColor: CSSProperties["color"]
   fontSize: CSSProperties["fontSize"]
 }
 
@@ -17,3 +17,8 @@ export type NamedThemeDictionary = {
   [N in AvailableThemes]: { name: N; theme: Theme }
 }
 
+// Helper types
+export type ValueOf<T> = T[keyof T]
+export type RepeatedDictionary<T extends {}> = {
+  [K in Extract<ValueOf<T>, string>]: K
+}

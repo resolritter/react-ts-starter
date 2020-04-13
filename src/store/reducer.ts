@@ -1,5 +1,6 @@
 import { Reducer, Action } from "redux"
 import { get } from "lodash"
+import { actions } from "./types"
 
 export type ApplicationState = {
   hello: string
@@ -13,7 +14,7 @@ export default {
     }
 
     switch (action.type) {
-      case "INC_HELLO": {
+      case actions.INC: {
         return `${state} ${++counter}`
       }
     }
