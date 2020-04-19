@@ -1,8 +1,11 @@
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin
+
 const path = require("path")
 const lodash = require("lodash")
 
 // for hashing the chunk names
-var crypto = require('crypto')
+var crypto = require("crypto")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 
@@ -34,7 +37,7 @@ var configuration = mergeConfigurations(baseConfiguration, {
       cacheGroups: {
         fromNpm: {
           test: /[\\/]node_modules[\\/]/,
-          name: function({ rawRequest }) {
+          name: function ({ rawRequest }) {
             return `npm.${hashChunk(path.basename(rawRequest))}`
           },
         },
@@ -43,19 +46,8 @@ var configuration = mergeConfigurations(baseConfiguration, {
   },
 })
 
-if (process.env["SOURCEMAPS"]) {
-  configuration = mergeConfigurations(configuration, {
-    devtool: "source-map",
-    module: {
-      rules: [
-        {
-          enforce: "pre",
-          test: /\.js$/,
-          loader: "source-map-loader",
-        },
-      ],
-    },
-  })
+if (process.env["ANALYZE_BUNDLE"]) {
+  configuration.plugins.push(new BundleAnalyzerPlugin())
 }
 
 module.exports = configuration
