@@ -1,7 +1,6 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 import { Provider } from "react-redux"
-import { ConnectedRouter } from "connected-react-router"
 import { processedTheme } from "./setupTheme"
 import App from "./App"
 import z from "zaftig"
@@ -14,9 +13,7 @@ const { store, history } = getStoreAndHistory()
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
+    <App />
   </Provider>,
   document.getElementById("app"),
 )
