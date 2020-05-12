@@ -5,12 +5,10 @@ import { ConnectedRouter } from "connected-react-router"
 import { processedTheme } from "./setupTheme"
 import App from "./App"
 import z from "zaftig"
-import getStoreAndHistory from "./store/setup"
 import Color from "color"
+import { store, history } from "./setup"
 
 z.global(processedTheme)
-
-const { store, history } = getStoreAndHistory()
 
 ReactDOM.render(
   <Provider store={store}>
