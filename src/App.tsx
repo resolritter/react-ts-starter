@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ApplicationState } from "./store/reducer"
+import { ApplicationState } from "src/store/types"
 import { useSelector } from "react-redux"
 import { useRef, useEffect } from "react"
 import Button from "src/components/Button"

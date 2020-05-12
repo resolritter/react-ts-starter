@@ -22,3 +22,10 @@ export type ValueOf<T> = T[keyof T]
 export type RepeatedDictionary<T extends {}> = {
   [K in Extract<ValueOf<T>, string>]: K
 }
+export type MappedExclusive<
+  Parent,
+  Variant extends Parent,
+  ComparedVariant extends Parent,
+  MappedType,
+  Otherwise = never
+> = Variant extends ComparedVariant ? MappedType : Otherwise

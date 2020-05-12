@@ -1,7 +1,8 @@
 import { createBrowserHistory } from "history"
 import { applyMiddleware, compose, createStore } from "redux"
 import { routerMiddleware } from "connected-react-router"
-import rootReducer, { ApplicationState } from "./reducer"
+import rootReducer from "./reducer"
+import { ApplicationState } from "./types"
 import { combineReducers } from "redux"
 import { connectRouter } from "connected-react-router"
 
