@@ -3,7 +3,6 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const path = require("path")
-const lodash = require("lodash")
 
 // for hashing the chunk names
 var crypto = require("crypto")

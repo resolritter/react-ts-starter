@@ -1,20 +1,22 @@
-const _ = require("lodash")
+const { isArray, mergeWith } = require("lodash")
 const crypto = require("crypto")
 
 const chunkSalt = process.env["CHUNKS_HASH_SALT"]
 
 if (process.env["NODE_ENV"] === "production" && !chunkSalt) {
-  console.error(`Salt ${chunkSalt} for production build chunks is not set. Exiting!`)
+  console.error(
+    `Salt ${chunkSalt} for production build chunks is not set. Exiting!`,
+  )
   process.exit(1)
 }
 
 module.exports = {
   mergeConfigurations(baseConfiguration, otherConfiguration) {
-    return _.mergeWith(baseConfiguration, otherConfiguration, function(
+    return mergeWith(baseConfiguration, otherConfiguration, function (
       objValue,
       srcValue,
     ) {
-      if (_.isArray(objValue)) {
+      if (isArray(objValue)) {
         return objValue.concat(srcValue)
       }
     })
