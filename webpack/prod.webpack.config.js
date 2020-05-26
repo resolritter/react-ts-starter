@@ -1,5 +1,6 @@
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const path = require("path")
 const lodash = require("lodash")
@@ -20,6 +21,9 @@ var configuration = mergeConfigurations(baseConfiguration, {
     chunkFilename: "[name]-[contenthash].js",
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: "styles-[contenthash].css",
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(baseConfiguration.context, "./index.html"),
       filename: "index.html",

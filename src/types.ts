@@ -1,15 +1,11 @@
 import { CSSProperties } from "react"
 
 export type AvailableThemes = "light" | "dark"
-
-export type Theme = {
-  bgColor: CSSProperties["backgroundColor"]
-  fgColor: CSSProperties["color"]
-  fontSize: CSSProperties["fontSize"]
-}
+export type ThemeSettings = "backgroundColor" | "color"
+export type Theme = Pick<CSSProperties, ThemeSettings>
 
 export type NamedTheme = {
-  name: string
+  name: AvailableThemes
   theme: Theme
 }
 
@@ -21,6 +17,9 @@ export type NamedThemeDictionary = {
 export type ValueOf<T> = T[keyof T]
 export type RepeatedDictionary<T extends {}> = {
   [K in Extract<ValueOf<T>, string>]: K
+}
+export type RepeatedUnionDictionary<T extends string> = {
+  [K in Extract<T, string>]: K
 }
 export type MappedExclusive<
   Parent,

@@ -1,4 +1,5 @@
 const path = require("path")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 
 const webpack = require("webpack")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
@@ -27,6 +28,9 @@ module.exports = mergeConfigurations(baseConfiguration, {
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "styles.css",
+    }),
     new HtmlWebpackPlugin({
       inject: true,
       template: "index.html",

@@ -1,37 +1,40 @@
-import z from "zaftig"
 import { CSSProperties, useState, useEffect } from "react"
-import { Theme, NamedTheme, AvailableThemes } from "./types"
+import { Theme, NamedTheme, AvailableThemes, ThemeSettings } from "./types"
 import { themes } from "./constants"
 import { useId } from "react-id-generator"
+import { cssVariableOf, getRootElement } from "./utils"
 
-let activeTheme: string
+let activeTheme: AvailableThemes
 export function getActiveTheme() {
   return activeTheme
 }
-const themeChangedCallbacks = new Map<string, () => void>()
+const themeChangedListeners = new Map<
+  string,
+  (theme: AvailableThemes) => void
+>()
 
-export function useThemeVariable(varName: keyof Theme) {
+export function useThemeVariable(varName: ThemeSettings) {
   const id = useId()[0]
   const [value, setValue] = useState<Theme[typeof varName]>(
     themes[getActiveTheme() as AvailableThemes].theme[varName],
   )
   useEffect(function () {
-    themeChangedCallbacks.set(id, function subscription() {
+    themeChangedListeners.set(id, function subscription() {
       setValue(themes[getActiveTheme() as AvailableThemes].theme[varName])
     })
 
     return function unsubscribe() {
-      themeChangedCallbacks.delete(id)
+      themeChangedListeners.delete(id)
     }
   }, [])
   return value
 }
 
-export function themeToZaftigString(theme: Theme): string {
-  return Object.entries(theme).reduce(function (styleString, [key, value]) {
+export function themeToStyle(theme: Theme): string {
+  return Object.entries(theme).reduce(function (accumulator, [key, value]) {
     return `
-      ${styleString}
-      $${key} ${value}
+      ${accumulator}
+      ${cssVariableOf(key)}: ${value};
     `
   }, "")
 }
@@ -40,17 +43,16 @@ export function initializeTheme({ name, theme }: NamedTheme) {
   activeTheme = name
 
   return {
-    processedTheme: themeToZaftigString(theme),
+    processedTheme: themeToStyle(theme),
     updateTheme: function ({ name, theme }: NamedTheme) {
-      // https://css-tricks.com/updating-a-css-variable-with-javascript/
-      const root = document.documentElement
+      const root = getRootElement()
       for (const key of Object.keys(theme)) {
-        root.style.setProperty(`--${key}`, (theme as any)[key])
+        root.style.setProperty(`${cssVariableOf(key)}`, (theme as any)[key])
       }
 
       activeTheme = name
-      themeChangedCallbacks.forEach(function (wakeUp) {
-        wakeUp()
+      themeChangedListeners.forEach(function (notify) {
+        notify(activeTheme)
       })
     },
   }

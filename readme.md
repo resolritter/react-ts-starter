@@ -18,4 +18,4 @@ node ./scripts/assemble_production_build_env.js
 - Renderer: `react`
 - Router: `connected-redux-router`
 - State management: `react-redux`
-- CSS-in-JS: `zaftig`
+- CSS: `linaria`

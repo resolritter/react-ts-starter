@@ -3,19 +3,19 @@ import { ApplicationState } from "src/store/types"
 import { useSelector } from "react-redux"
 import { useRef, useEffect } from "react"
 import Button from "src/components/Button"
-import z from "zaftig"
-
-const style = z`
-  background-color $bgColor
-  color $fgColor
-`
+import { processedTheme } from "./setupTheme"
+import { getRootElement } from "./utils"
 
 export type Props = {
   message: string
 }
 export function App({ message }: Props): JSX.Element {
+  useEffect(function () {
+    getRootElement().setAttribute("style", processedTheme)
+  }, [])
+
   return (
-    <div className={style.className}>
+    <div>
       <div>{message}</div>
       <Button />
     </div>

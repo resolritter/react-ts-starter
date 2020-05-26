@@ -2,21 +2,22 @@ import React from "react"
 import z from "zaftig"
 import { getActiveTheme, useThemeVariable } from "src/theme"
 import { updateTheme } from "src/setupTheme"
-import { themes } from "src/constants"
+import { themes, themeKeys } from "src/constants"
+import { cssVariableValueOf } from "src/utils"
+import { css } from "linaria"
 
-const style = z`
-  background-color $bgColor
-  color $fgColor
-  padding 16
-  font-weight bold
+const changeThemeButton = css`
+  background-color: ${cssVariableValueOf(themeKeys.backgroundColor)};
+  color: ${cssVariableValueOf(themeKeys.color)};
+  padding: 16px;
+  font-weight: bold;
 `
 
 export function Button() {
-  const fgColor = useThemeVariable("fgColor")
-  console.log(fgColor)
+  const color = useThemeVariable(themeKeys.color)
   return (
     <button
-      className={style.className}
+      className={changeThemeButton}
       onClick={function () {
         const activeTheme = getActiveTheme()
         if (activeTheme == "light") {

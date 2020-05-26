@@ -1,10 +1,8 @@
 module.exports = {
   presets: [
-    [
-      "@babel/preset-env",
-      { targets: { browsers: ["last 2 versions", ">= 5% in KR"] } },
-    ],
-    "@babel/react",
-    "@babel/typescript",
+    ["@babel/preset-env", { targets: { browsers: ["last 2 versions"] } }],
+    "@babel/preset-react",
+    "@babel/preset-typescript",
+    "linaria/babel",
   ],
 }
