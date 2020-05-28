@@ -16,6 +16,6 @@ node ./scripts/assemble_production_build_env.js
 ## `master` branch
 
 - Renderer: `react`
-- Router: `connected-redux-router`
+- Router: `connected-react-router`
 - State management: `react-redux`
 - CSS: `linaria`
