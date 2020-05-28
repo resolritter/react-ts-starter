@@ -18,7 +18,7 @@ export function useThemeVariable(varName: ThemeSettings) {
   const [value, setValue] = useState<Theme[typeof varName]>(
     themes[getActiveTheme() as AvailableThemes].theme[varName],
   )
-  useEffect(function () {
+  useEffect(function() {
     themeChangedListeners.set(id, function subscription() {
       setValue(themes[getActiveTheme() as AvailableThemes].theme[varName])
     })
@@ -31,7 +31,7 @@ export function useThemeVariable(varName: ThemeSettings) {
 }
 
 export function themeToStyle(theme: Theme): string {
-  return Object.entries(theme).reduce(function (accumulator, [key, value]) {
+  return Object.entries(theme).reduce(function(accumulator, [key, value]) {
     return `
       ${accumulator}
       ${cssVariableOf(key)}: ${value};
@@ -44,14 +44,14 @@ export function initializeTheme({ name, theme }: NamedTheme) {
 
   return {
     processedTheme: themeToStyle(theme),
-    updateTheme: function ({ name, theme }: NamedTheme) {
+    updateTheme: function({ name, theme }: NamedTheme) {
       const root = getRootElement()
       for (const key of Object.keys(theme)) {
         root.style.setProperty(`${cssVariableOf(key)}`, (theme as any)[key])
       }
 
       activeTheme = name
-      themeChangedListeners.forEach(function (notify) {
+      themeChangedListeners.forEach(function(notify) {
         notify(activeTheme)
       })
     },

@@ -3,7 +3,6 @@ import * as ReactDOM from "react-dom"
 import { Provider } from "react-redux"
 import { ConnectedRouter } from "connected-react-router"
 import App from "./App"
-import Color from "color"
 import { store, history } from "./setup"
 
 ReactDOM.render(
