@@ -11,11 +11,11 @@ export type Props = {
   message: string
 }
 export function App(): JSX.Element {
-  const hello = useSelector(function(s: ApplicationState) {
+  const hello = useSelector(function (s: ApplicationState) {
     return s.hello
   })
 
-  useEffect(function() {
+  useEffect(function () {
     getRootElement().setAttribute("style", processedTheme)
   }, [])
 
